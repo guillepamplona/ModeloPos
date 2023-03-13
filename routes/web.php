@@ -1,7 +1,14 @@
 <?php
 
+
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Controller;
+use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
+use Laravel\Fortify\Fortify;
+
 
 /*
 |--------------------------------------------------------------------------

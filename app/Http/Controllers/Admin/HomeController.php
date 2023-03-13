@@ -12,7 +12,10 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
-
+    public function create()
+    {
+        $producto = new Producto;
+    }
     public function productosIndex()
     {
         $productos = Producto::all();

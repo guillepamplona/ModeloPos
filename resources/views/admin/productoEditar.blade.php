@@ -8,7 +8,7 @@
 
 @section('content')
 <p>Producto.</p>
-<div>{{$producto->nombre_producto}} {{$producto->valor_producto}}</div>
+<div>{{$producto->nombre_producto}} {{$produto->descripcion_producto}} {{$producto->valor_producto}}</div>
 <form action="/productos/{{$producto->id}}/borrar" method="post">
     @csrf
     <input type="submit" value="Borrar"/>
