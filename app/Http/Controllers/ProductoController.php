@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Http\Requests\Producto\StoreRequest;
@@ -13,41 +14,39 @@ class ProductoController extends Controller
 
     public function index()
     {
-        $productos = Producto::get();
-        return view('admin.producto.index', compact('productos'));
+        return view('admin.index');
     }
-
     public function create()
     {
-        return view('admin.producto.create', compact('producto'));
+        $producto = new Producto;
+    }
+    public function productosIndex()
+    {
+        $productos = Producto::all();
+        return view('admin.productos', ['productos' => $productos]);
     }
 
-
-    public function store(StoreProductoRequest $request)
+    public function productoEditar($id)
     {
-        Producto::create($request->all());
-        return redirect()->route('productos.index');
+        $producto = Producto::where('id', $id)->firstOrFail();
+        return view('admin.productoEditar', ['producto' => $producto]);
+    }
+    public function borrarProducto($id)
+    {
+        Producto::where('id', $id)->delete();
+        $productos = Producto::all();
+        return view('admin.productos',['productos'=>$productos]);
     }
 
-    public function edit(Producto $producto)
+    public function guardarProducto($id)
     {
-        return view('admin.producto.show', compact('producto'));
-    }
-    
-    public function show(Producto $producto)
-    {
-        return view('admin.producto.show', compact('producto'));
-    }
-
-    public function update(UpdateProductoRequest $request, Producto $producto)
-    {
-        $producto->update($request->all());
-        return redirect()->route('productos.index');
-    }
-
-    public function destroy(Producto $producto)
-    {
-        $producto->delete();
-        return redirect()->route('productos.index');
+        $params = Request::capture();
+        Producto::where("id", $id)->update([
+            'nombre_producto' => $params['nombre_producto'],
+            'descripcion_producto' => $params['descripcion_producto'],
+            'valor_producto' => $params['valor_producto'],
+            'cantidad_producto' => $params['cantidad_producto']]);
+        $producto = Producto::where("id", $id)->firstOrFail();
+        return view('admin.productoEditar', ['producto' => $producto]);
     }
 }

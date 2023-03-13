@@ -1,14 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Controller;
-use App\Models\Producto;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
-use Laravel\Fortify\Fortify;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -32,21 +25,18 @@ Route::middleware([
 //        return view('dashboard');
 //    })->name('dashboard');
 
+    // Route::get('/user/profile', [HomeController::class])
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/productos', [HomeController::class, 'productosIndex']);
+    Route::get('/productos/new', [HomeController::class, 'productocreate']) -> name('admin.create');
     Route::get('/productos/{id}', [HomeController::class, 'productoEditar']);
     Route::post('/productos/{id}', [HomeController::class, 'guardarProducto']);
     Route::post('/productos/{id}/borrar', [HomeController::class, 'borrarProducto']);
 
-
-    Route::get('/ciudades', [HomeController::class, 'productosIndex']);
-    Route::get('/ciudades/{id}', [HomeController::class, 'productoEditar']);
-    Route::post('/ciudades/{id}', [HomeController::class, 'guardarProducto']);
-    Route::post('/ciudades/{id}/borrar', [HomeController::class, 'borrarProducto']);
-
-
-    Route::get('/barrios', [HomeController::class, 'productosIndex']);
-    Route::get('/barrios/{id}', [HomeController::class, 'productoEditar']);
-    Route::post('/barrios/{id}', [HomeController::class, 'guardarProducto']);
-    Route::post('/barrios/{id}/borrar', [HomeController::class, 'borrarProducto']);
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/clientes', [HomeController::class, 'clientesIndex']);
+    Route::get('/clientes/{id}', [HomeController::class, 'clientecreate']);
+    Route::get('/clientes/{id}', [HomeController::class, 'clienteEditar']);
+    Route::post('/clientes/{id}', [HomeController::class, 'guardarCliente']);
+    Route::post('/clientes/{id}/borrar', [HomeController::class, 'borrarCliente']);
 });

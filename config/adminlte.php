@@ -337,12 +337,12 @@ return [
         [
             'text'       => 'Clientes',
             'icon'       => 'fa fa-handshake fa-fw',
-            'url'        => '#',
+            'url'        => '/clientes',
         ],
         [
             'text'       => 'Ventas',
             'icon'       => 'fa fa-check fa-fw',
-            'url'        => '#',
+            'url'        => '/ventas',
         ],
     ],
 
