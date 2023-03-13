@@ -10,7 +10,7 @@
  {{-- <button class="guardarProducto" name="guardarProducto">Agregar Producto</button> --}}
 <div class="card">
     <div class="card-header">
-        <a class="btn btn-primary btn-sm" href="{{route('admin.create')}}">Agregar Producto</a>
+        <a class="btn btn-primary btn-sm" href="/productos/new">Agregar Producto</a>
     </div>
     <div class="card-body">
     <table class="table table-fixed">

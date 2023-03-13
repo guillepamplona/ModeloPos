@@ -18,7 +18,7 @@ class ProductoController extends Controller
     }
     public function create()
     {
-        $producto = new Producto;
+       
     }
     public function productosIndex()
     {

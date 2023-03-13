@@ -13,10 +13,20 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
-    public function productocreate()
+    public function productocreate(Request $request)
     {
-        $producto = new Producto;
-        return view('admin.create', ['producto' => $producto]);
+        $request->validate([
+            'nombre_producto'=>'required',
+            'descripcion_producto'=>'required',
+            'valor_producto'=>'required',
+            'cantidad_producto'=>'required'
+           ]);
+            $producto = Producto::create($request->all());
+            return view ('admin.create', $producto);
+    }
+    public function store(Request $request)
+    {
+       
     }
     public function productosIndex()
     {
