@@ -27,6 +27,7 @@ Route::middleware([
 
     // Route::get('/user/profile', [HomeController::class])
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/productos', [HomeController::class, 'productosIndex']);
     Route::get('/productos/new', [HomeController::class, 'productocreate']) -> name('admin.create');
     Route::get('/productos/{id}', [HomeController::class, 'productoEditar']);
