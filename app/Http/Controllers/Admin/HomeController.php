@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\Producto;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -74,10 +75,32 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
-    public function clientecreate()
+    public function clienteCreateView(Request $request)
     {
-        $cliente = new Cliente;
-        return view('admin.create', ['cliente' => $cliente]);
+        // $request->validate([
+        //     'nombre_producto'=>'required',
+        //     'descripcion_producto'=>'required',
+        //     'valor_producto'=>'required',
+        //     'cantidad_producto'=>'required'
+        //    ]);
+        // $producto = Producto::create($request->all());
+        return view ('admin.clienteCreate');
+    }
+    public function clienteCreate(Request $request)
+    {
+        $request->validate([
+            'cedula_cliente'=>'required',
+            'nombres_cliente'=>'required',
+            'apellidos_cliente'=>'required',
+            'celular_cliente'=>'required',
+            'email_cliente'=>'required',
+            'direccion_cliente'=>'required',
+            'departamento_cliente'=>'required',
+            'ciudad_cliente'=>'required',
+            'barrio_cliente'=>'required'
+           ]);
+        Cliente::create($request->all());
+        return redirect('/clientes');
     }
     public function clientesIndex()
     {
@@ -107,6 +130,7 @@ class HomeController extends Controller
             'celular_cliente' => $params['celular_cliente'],
             'email_cliente' => $params['email_cliente'],
             'direccion_cliente' => $params['direccion_cliente'],
+            'departamento_cliente' => $params['departamento_cliente'],
             'ciudad_cliente' => $params['ciudad_cliente'],
             'barrio_cliente' => $params['barrio_cliente']]);
         $cliente = Cliente::where("id", $id)->firstOrFail();

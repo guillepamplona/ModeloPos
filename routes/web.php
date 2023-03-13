@@ -36,8 +36,10 @@ Route::middleware([
     Route::post('/productos/{id}/borrar', [HomeController::class, 'borrarProducto']);
 
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/clientes', [HomeController::class, 'clientesIndex']);
-    Route::get('/clientes/{id}', [HomeController::class, 'clientecreate']);
+    Route::get('/clientes/new', [HomeController::class, 'clienteCreateView']) -> name('admin.clienteCreate');
+    Route::post('/clientes/new', [HomeController::class, 'clienteCreate']) -> name('admin.clienteCreate');
     Route::get('/clientes/{id}', [HomeController::class, 'clienteEditar']);
     Route::post('/clientes/{id}', [HomeController::class, 'guardarCliente']);
     Route::post('/clientes/{id}/borrar', [HomeController::class, 'borrarCliente']);

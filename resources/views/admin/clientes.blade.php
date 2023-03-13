@@ -10,7 +10,7 @@
  {{-- <button class="guardarProducto" name="guardarProducto">Agregar Producto</button> --}}
 <div class="card">
     <div class="card-header">
-        <a class="btn btn-primary btn-sm" href="">Agregar Cliente</a>
+        <a class="btn btn-primary btn-sm" href="/clientes/new">Agregar Cliente</a>
     </div>
     <div class="card-body">
     <table class="table table-fixed">
