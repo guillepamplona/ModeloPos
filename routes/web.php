@@ -29,7 +29,8 @@ Route::middleware([
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/productos', [HomeController::class, 'productosIndex']);
-    Route::get('/productos/new', [HomeController::class, 'productocreate']) -> name('admin.create');
+    Route::get('/productos/new', [HomeController::class, 'productoCreateView']) -> name('admin.create');
+    Route::post('/productos/new', [HomeController::class, 'productoCreate']) -> name('admin.create');
     Route::get('/productos/{id}', [HomeController::class, 'productoEditar']);
     Route::post('/productos/{id}', [HomeController::class, 'guardarProducto']);
     Route::post('/productos/{id}/borrar', [HomeController::class, 'borrarProducto']);

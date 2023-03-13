@@ -13,7 +13,19 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
-    public function productocreate(Request $request)
+    public function productoCreateView(Request $request)
+    {
+        // $request->validate([
+        //     'nombre_producto'=>'required',
+        //     'descripcion_producto'=>'required',
+        //     'valor_producto'=>'required',
+        //     'cantidad_producto'=>'required'
+        //    ]);
+        // $producto = Producto::create($request->all());
+        return view ('admin.create');
+    }
+
+    public function productoCreate(Request $request)
     {
         $request->validate([
             'nombre_producto'=>'required',
@@ -21,12 +33,12 @@ class HomeController extends Controller
             'valor_producto'=>'required',
             'cantidad_producto'=>'required'
            ]);
-            $producto = Producto::create($request->all());
-            return view ('admin.create', $producto);
+        Producto::create($request->all());
+        return redirect('/productos');
     }
     public function store(Request $request)
     {
-       
+
     }
     public function productosIndex()
     {
@@ -57,7 +69,7 @@ class HomeController extends Controller
         $producto = Producto::where("id", $id)->firstOrFail();
         return view('admin.productoEditar', ['producto' => $producto]);
     }
-    
+
     public function index()
     {
         return view('admin.index');
